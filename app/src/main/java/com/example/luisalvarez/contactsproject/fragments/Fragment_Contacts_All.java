@@ -3,22 +3,32 @@ package com.example.luisalvarez.contactsproject.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.luisalvarez.contactsproject.R;
+import com.example.luisalvarez.contactsproject.data.ContactsFetchTask;
+import com.example.luisalvarez.contactsproject.data.DataContract;
+import com.google.android.gms.gcm.GcmNetworkManager;
+import com.google.android.gms.gcm.OneoffTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class Fragment_Contacts_All extends Fragment {
+public class Fragment_Contacts_All extends Fragment implements LoaderManager.LoaderCallbacks {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private String mParam1;
     private String mParam2;
+
+
 
     @BindView(R.id.view_recyclerview)
     RecyclerView vContactsList;
@@ -52,11 +62,41 @@ public class Fragment_Contacts_All extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_contacts_all, container, false);
         //Bind views to fragment
         ButterKnife.bind(this,rootView);
-
-
-
+        startFetchTaskService();
 
         return rootView;
     }
 
+    private void startFetchTaskService() {
+        OneoffTask myTask = new OneoffTask.Builder()
+                .setService(ContactsFetchTask.class)
+                .setExecutionWindow(30,60)
+                .setTag("contacts_service")
+                .build();
+        GcmNetworkManager.getInstance(getActivity()).schedule(myTask);
+    }
+
+
+    /**
+     * Cursor Loading
+     */
+    @Override
+    public Loader onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(getActivity(),
+                DataContract.ContactsEntry.CONTENT_URI,
+                DataContract.ContactsEntry.buildProjectionArray(),
+                null,
+                null,
+                DataContract.ContactsEntry.COLUMN_CONTACT_NAME);
+    }
+
+    @Override
+    public void onLoadFinished(Loader loader, Object data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader loader) {
+
+    }
 }

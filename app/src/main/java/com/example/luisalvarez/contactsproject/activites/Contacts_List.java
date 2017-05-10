@@ -1,7 +1,7 @@
 package com.example.luisalvarez.contactsproject.activites;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.luisalvarez.contactsproject.R;
 
