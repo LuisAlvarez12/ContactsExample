@@ -21,33 +21,33 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         final String CREATE_FAVORITES_TABLE = "CREATE TABLE " + DataContract.FavoritesEntry.TABLE_NAME + " (" +
-                DataContract.FavoritesEntry.COLUMN_WORKOUT_ID + " TEXT NOT NULL, " +
+                DataContract.FavoritesEntry.COLUMN_WORKOUT_ID + " TEXT NOT NULL " +
                 ");";
 
         final String CREATE_CONTACTS_TABLE = "CREATE TABLE " + DataContract.ContactsEntry.TABLE_NAME + " (" +
                 DataContract.ContactsEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                DataContract.ContactsEntry.COLUMN_CONTACT_NAME + " TEXT NOT NULL, " +
-                DataContract.ContactsEntry.COLUMN_CONTACT_COMPANY + " TEXT NOT NULL, " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_NAME + " TEXT , " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_COMPANY + " TEXT , " +
                 //0 = false, 1 = true
-                DataContract.ContactsEntry.COLUMN_CONTACT_FAVORITE + " BIT NULL DEFAULT 0, " +
-                DataContract.ContactsEntry.COLUMN_CONTACT_IMAGE_SMALL + " TEXT NOT NULL, " +
-                DataContract.ContactsEntry.COLUMN_CONTACT_IMAGE_LARGE + " TEXT NOT NULL, " +
-                DataContract.ContactsEntry.COLUMN_CONTACT_EMAIL + " TEXT NOT NULL, " +
-                DataContract.ContactsEntry.COLUMN_CONTACT_WEBSITE + " TEXT NOT NULL, " +
-                DataContract.ContactsEntry.COLUMN_CONTACT_BIRTHDATE + " TEXT NOT NULL, " +
-                DataContract.ContactsEntry.COLUMN_CONTACT_PHONE_WORK + " TEXT NOT NULL, " +
-                DataContract.ContactsEntry.COLUMN_CONTACT_PHONE_HOME + " TEXT NOT NULL, " +
-                DataContract.ContactsEntry.COLUMN_CONTACT_PHONE_MOBILE + " TEXT NOT NULL, " +
-                DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_STREET + " TEXT NOT NULL, " +
-                DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_CITY + " TEXT NOT NULL, " +
-                DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_STATE + " TEXT NOT NULL, " +
-                DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_COUNTRY + " TEXT NOT NULL, " +
-                DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_ZIP + " TEXT NOT NULL, " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_FAVORITE + " INTEGER, " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_IMAGE_SMALL + " TEXT , " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_IMAGE_LARGE + " TEXT , " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_EMAIL + " TEXT , " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_WEBSITE + " TEXT , " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_BIRTHDATE + " TEXT , " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_PHONE_WORK + " TEXT , " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_PHONE_HOME + " TEXT , " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_PHONE_MOBILE + " TEXT , " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_STREET + " TEXT , " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_CITY + " TEXT , " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_STATE + " TEXT , " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_COUNTRY + " TEXT , " +
+                DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_ZIP + " TEXT, " +
                 DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_LATITUDE + " DOUBLE, " +
                 DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_LONGITUDE + " DOUBLE" +
                 ");";
 
-        db.execSQL(CREATE_FAVORITES_TABLE);
+       // db.execSQL(CREATE_FAVORITES_TABLE);
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
 

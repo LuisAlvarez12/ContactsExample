@@ -2,23 +2,25 @@ package com.example.luisalvarez.contactsproject.fragments;
 
 
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.luisalvarez.contactsproject.R;
-import com.example.luisalvarez.contactsproject.data.ContactsFetchTask;
+import com.example.luisalvarez.contactsproject.data.FetchService;
 import com.example.luisalvarez.contactsproject.data.DataContract;
 import com.example.luisalvarez.contactsproject.util.Config;
 import com.example.luisalvarez.contactsproject.util.ContactListAdapter;
 import com.google.android.gms.gcm.GcmNetworkManager;
-import com.google.android.gms.gcm.OneoffTask;
+import com.google.android.gms.gcm.PeriodicTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,18 +68,42 @@ public class Fragment_Contacts_All extends Fragment implements LoaderManager.Loa
         View rootView = inflater.inflate(R.layout.fragment_contacts_all, container, false);
         //Bind views to fragment
         ButterKnife.bind(this,rootView);
+        Log.d("test", "async");
+        Syncr syncr = new Syncr();
+        syncr.execute();
+        Log.d("test", "fetch task");
         startFetchTaskService();
         adapter = new ContactListAdapter(getActivity(),null);
+        vContactsList.setAdapter(adapter);
+        getLoaderManager().initLoader(0,null,this);
         return rootView;
     }
 
     private void startFetchTaskService() {
-        OneoffTask myTask = new OneoffTask.Builder()
-                .setService(ContactsFetchTask.class)
-                .setExecutionWindow(30,60)
+        PeriodicTask myTask = new PeriodicTask.Builder()
+                .setService(FetchService.class)
+                .setPeriod(30L)
                 .setTag("contacts_service")
                 .build();
+        Log.d("gcm","started");
         mGcmNetworkManager.getInstance(getActivity()).schedule(myTask);
+    }
+
+    public class Syncr extends AsyncTask<Void,Void,Void>{
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            //check to make sure network is up
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+        }
     }
 
 
@@ -91,11 +117,12 @@ public class Fragment_Contacts_All extends Fragment implements LoaderManager.Loa
                 Config.buildProjectionListArray(),
                 null,
                 null,
-                DataContract.ContactsEntry.COLUMN_CONTACT_NAME);
+                null);
     }
 
     @Override
     public void onLoadFinished(Loader loader, Object data) {
+        Log.d("test", "cursor set");
         adapter.setCursor((Cursor)data);
     }
 

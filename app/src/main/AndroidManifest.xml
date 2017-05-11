@@ -24,7 +24,7 @@
         <provider android:name=".data.ContactProvider"
             android:authorities="com.example.luisalvarez.contactsproject"
             />
-        <service android:name=".data.ContactsFetchTask"
+        <service android:name=".data.FetchService"
             android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE"
             android:exported="true">
             <intent-filter>

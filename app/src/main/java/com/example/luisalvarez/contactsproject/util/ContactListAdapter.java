@@ -43,7 +43,6 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
             holder.contactPhone.setText(items.getString(Config.POSITION_PROJECTION_CONTACT_PHONE));
             Picasso.with(context)
                     .load(items.getString(Config.POSITION_PROJECTION_CONTACT_IMAGE_SMALL))
-                    .centerInside()
                     .into(holder.contactPhoto);
         }
 
