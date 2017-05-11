@@ -21,9 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name=".data.ContactProvider"
             android:authorities="com.example.luisalvarez.contactsproject" />
+
         <service
             android:name=".data.FetchService"
             android:exported="true"
@@ -32,6 +34,8 @@
                 <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY" />
             </intent-filter>
         </service>
+
+        <activity android:name=".activites.DetailActivity"></activity>
     </application>
 
 </manifest>
