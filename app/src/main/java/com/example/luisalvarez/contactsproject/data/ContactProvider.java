@@ -17,12 +17,29 @@ import android.support.annotation.Nullable;
 
 public class ContactProvider extends ContentProvider {
 
-    private static final UriMatcher sUriMatcher = createUriBuilder();
-    private DBHelper mOpenHelper;
     private static final int FAVORITE_LIST = 100;
     private static final int FAVORITE_ID = 101;
     private static final int CONTACT_LIST = 106;
     private static final int CONTACT_ID = 107;
+    private static final UriMatcher sUriMatcher = createUriBuilder();
+    private DBHelper mOpenHelper;
+
+    public static UriMatcher createUriBuilder() {
+        String content = DataContract.uriAUTHORITY;
+
+        // All paths to the UriMatcher have a corresponding code to return
+        // when a match is found (the ints above).
+        UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
+        matcher.addURI(content, DataContract.sFavoritesQ, FAVORITE_LIST);
+        matcher.addURI(content, DataContract.sFavoritesQ + "/#", FAVORITE_ID);
+        matcher.addURI(content, DataContract.sContactsQ, CONTACT_LIST);
+        matcher.addURI(content, DataContract.sContactsQ + "/#", CONTACT_ID);
+
+
+//        matcher.addURI(content, DataContract.PATH_MOVIE, MOVIE);
+//        matcher.addURI(content, DataContract.PATH_MOVIE + "/#", MOVIE_ID);
+        return matcher;
+    }
 
     @Override
     public boolean onCreate() {
@@ -36,7 +53,7 @@ public class ContactProvider extends ContentProvider {
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         Cursor retCursor;
         long _id;
-        switch (sUriMatcher.match(uri)){
+        switch (sUriMatcher.match(uri)) {
             case CONTACT_LIST:
                 retCursor = db.query(
                         DataContract.ContactsEntry.TABLE_NAME,
@@ -93,7 +110,7 @@ public class ContactProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
-        switch (sUriMatcher.match(uri)){
+        switch (sUriMatcher.match(uri)) {
             case CONTACT_LIST:
                 return DataContract.ContactsEntry.CONTENT_TYPE;
             case CONTACT_ID:
@@ -103,51 +120,50 @@ public class ContactProvider extends ContentProvider {
             case FAVORITE_ID:
                 return DataContract.FavoritesEntry.CONTENT_ITEM_TYPE;
             default:
-                throw new UnsupportedOperationException("Unknown Uri: " +uri);
+                throw new UnsupportedOperationException("Unknown Uri: " + uri);
         }
     }
-
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         long _id;
         Uri returnUri;
-        switch (sUriMatcher.match(uri)){
+        switch (sUriMatcher.match(uri)) {
             case CONTACT_LIST:
-                _id = db.insert(DataContract.ContactsEntry.TABLE_NAME,null,values);
-                if(_id > 0){
-                    returnUri =  DataContract.ContactsEntry.buildProfileUri(_id);
-                    getContext().getContentResolver().notifyChange(uri,null);
+                _id = db.insert(DataContract.ContactsEntry.TABLE_NAME, null, values);
+                if (_id > 0) {
+                    returnUri = DataContract.ContactsEntry.buildProfileUri(_id);
+                    getContext().getContentResolver().notifyChange(uri, null);
                     return returnUri;
-                } else{
+                } else {
                     throw new UnsupportedOperationException("Unable to insert rows into: " + uri);
                 }
             case CONTACT_ID:
-                _id = db.insert(DataContract.ContactsEntry.TABLE_NAME,null,values);
-                if(_id > 0){
-                    returnUri =  DataContract.ContactsEntry.buildProfileUri(_id);
-                    getContext().getContentResolver().notifyChange(uri,null);
+                _id = db.insert(DataContract.ContactsEntry.TABLE_NAME, null, values);
+                if (_id > 0) {
+                    returnUri = DataContract.ContactsEntry.buildProfileUri(_id);
+                    getContext().getContentResolver().notifyChange(uri, null);
                     return returnUri;
-                } else{
+                } else {
                     throw new UnsupportedOperationException("Unable to insert rows into: " + uri);
                 }
             case FAVORITE_LIST:
-                _id = db.insert(DataContract.FavoritesEntry.TABLE_NAME,null,values);
-                if(_id > 0){
-                    returnUri =  DataContract.FavoritesEntry.buildMovieUri(_id);
-                    getContext().getContentResolver().notifyChange(uri,null);
+                _id = db.insert(DataContract.FavoritesEntry.TABLE_NAME, null, values);
+                if (_id > 0) {
+                    returnUri = DataContract.FavoritesEntry.buildMovieUri(_id);
+                    getContext().getContentResolver().notifyChange(uri, null);
                     return returnUri;
-                } else{
+                } else {
                     throw new UnsupportedOperationException("Unable to insert rows into: " + uri);
                 }
             case FAVORITE_ID:
-                _id = db.insert(DataContract.FavoritesEntry.TABLE_NAME,null,values);
-                if(_id > 0){
-                    returnUri =  DataContract.FavoritesEntry.buildMovieUri(_id);
-                    getContext().getContentResolver().notifyChange(uri,null);
+                _id = db.insert(DataContract.FavoritesEntry.TABLE_NAME, null, values);
+                if (_id > 0) {
+                    returnUri = DataContract.FavoritesEntry.buildMovieUri(_id);
+                    getContext().getContentResolver().notifyChange(uri, null);
                     return returnUri;
-                } else{
+                } else {
                     throw new UnsupportedOperationException("Unable to insert rows into: " + uri);
                 }
         }
@@ -157,19 +173,19 @@ public class ContactProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-        int rows=-1;
-        switch (sUriMatcher.match(uri)){
+        int rows = -1;
+        switch (sUriMatcher.match(uri)) {
             case CONTACT_LIST:
-                rows = db.delete(DataContract.ContactsEntry.TABLE_NAME,selection,selectionArgs);
+                rows = db.delete(DataContract.ContactsEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             case CONTACT_ID:
-                rows = db.delete(DataContract.ContactsEntry.TABLE_NAME,selection,selectionArgs);
+                rows = db.delete(DataContract.ContactsEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             case FAVORITE_ID:
-                rows = db.delete(DataContract.FavoritesEntry.TABLE_NAME,selection,selectionArgs);
+                rows = db.delete(DataContract.FavoritesEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             case FAVORITE_LIST:
-                rows = db.delete(DataContract.FavoritesEntry.TABLE_NAME,selection,selectionArgs);
+                rows = db.delete(DataContract.FavoritesEntry.TABLE_NAME, selection, selectionArgs);
                 break;
         }
         // Because null could delete all rows:
@@ -182,19 +198,19 @@ public class ContactProvider extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-        int rows=-1;
-        switch (sUriMatcher.match(uri)){
+        int rows = -1;
+        switch (sUriMatcher.match(uri)) {
             case CONTACT_LIST:
-                rows = db.update(DataContract.ContactsEntry.TABLE_NAME,values,selection,selectionArgs);
+                rows = db.update(DataContract.ContactsEntry.TABLE_NAME, values, selection, selectionArgs);
                 break;
             case CONTACT_ID:
-                rows = db.update(DataContract.ContactsEntry.TABLE_NAME,values,selection,selectionArgs);
+                rows = db.update(DataContract.ContactsEntry.TABLE_NAME, values, selection, selectionArgs);
                 break;
             case FAVORITE_LIST:
-                rows = db.update(DataContract.FavoritesEntry.TABLE_NAME,values,selection,selectionArgs);
+                rows = db.update(DataContract.FavoritesEntry.TABLE_NAME, values, selection, selectionArgs);
                 break;
             case FAVORITE_ID:
-                rows = db.update(DataContract.FavoritesEntry.TABLE_NAME,values,selection,selectionArgs);
+                rows = db.update(DataContract.FavoritesEntry.TABLE_NAME, values, selection, selectionArgs);
                 break;
         }
         // Because null could delete all rows:
@@ -204,22 +220,6 @@ public class ContactProvider extends ContentProvider {
         return rows;
     }
 
-    public static UriMatcher createUriBuilder(){
-        String content = DataContract.uriAUTHORITY;
-
-        // All paths to the UriMatcher have a corresponding code to return
-        // when a match is found (the ints above).
-        UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
-        matcher.addURI(content, DataContract.sFavoritesQ, FAVORITE_LIST);
-        matcher.addURI(content, DataContract.sFavoritesQ + "/#", FAVORITE_ID);
-        matcher.addURI(content, DataContract.sContactsQ, CONTACT_LIST);
-        matcher.addURI(content, DataContract.sContactsQ + "/#", CONTACT_ID);
-
-
-//        matcher.addURI(content, DataContract.PATH_MOVIE, MOVIE);
-//        matcher.addURI(content, DataContract.PATH_MOVIE + "/#", MOVIE_ID);
-        return matcher;
-    }
     @Override
     public int bulkInsert(Uri uri, ContentValues[] values) {
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
@@ -262,6 +262,7 @@ public class ContactProvider extends ContentProvider {
                 return super.bulkInsert(uri, values);
         }
     }
+
     @Override
     @TargetApi(11)
     public void shutdown() {

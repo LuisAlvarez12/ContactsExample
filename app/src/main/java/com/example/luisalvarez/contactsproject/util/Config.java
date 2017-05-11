@@ -7,25 +7,6 @@ import com.example.luisalvarez.contactsproject.data.DataContract;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_CITY;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_COUNTRY;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_LATITUDE;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_LONGITUDE;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_STATE;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_STREET;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_ZIP;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_BIRTHDATE;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_COMPANY;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_EMAIL;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_FAVORITE;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_IMAGE_LARGE;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_IMAGE_SMALL;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_NAME;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_PHONE_HOME;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_PHONE_MOBILE;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_PHONE_WORK;
-import static com.example.luisalvarez.contactsproject.data.DataContract.ContactsEntry.COLUMN_CONTACT_WEBSITE;
-
 public class Config {
     public static final URL CONTACTS_URL;
 
@@ -59,7 +40,7 @@ public class Config {
         URL url = null;
         try {
             //json info
-            url = new URL("https://s3.amazonaws.com/technical-challenge/Contacts_v2.json" );
+            url = new URL("https://s3.amazonaws.com/technical-challenge/Contacts_v2.json");
         } catch (MalformedURLException ignored) {
             Log.e(TAG, "Please check your internet connection.");
         }
@@ -69,7 +50,7 @@ public class Config {
     /**
      * @return full projection of a contact entry
      */
-    public static String[] buildProjectionArray(){
+    public static String[] buildProjectionArray() {
         String[] projection = new String[18];
         projection[0] = DataContract.ContactsEntry.COLUMN_CONTACT_NAME;
         projection[1] = DataContract.ContactsEntry.COLUMN_CONTACT_COMPANY;
@@ -90,21 +71,20 @@ public class Config {
         projection[16] = DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_LATITUDE;
         projection[17] = DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_LONGITUDE;
         return projection;
-    };
+    }
+
+    ;
 
 
-
-
-
-    public static String[] buildProjectionListArray(){
+    public static String[] buildProjectionListArray() {
         String[] projection = new String[3];
         projection[0] = DataContract.ContactsEntry.COLUMN_CONTACT_NAME;
         projection[1] = DataContract.ContactsEntry.COLUMN_CONTACT_IMAGE_SMALL;
         projection[2] = DataContract.ContactsEntry.COLUMN_CONTACT_PHONE_MOBILE;
         return projection;
-    };
+    }
 
-
+    ;
 
 
 }

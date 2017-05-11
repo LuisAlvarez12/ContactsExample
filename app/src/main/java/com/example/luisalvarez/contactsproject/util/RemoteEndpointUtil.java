@@ -24,7 +24,7 @@ public class RemoteEndpointUtil {
         String itemsJson = null;
         try {
             //fetch the standard text of all the article information
-                itemsJson = fetchPlainText(Config.CONTACTS_URL);
+            itemsJson = fetchPlainText(Config.CONTACTS_URL);
         } catch (IOException e) {
             Log.e(TAG, "Error fetching items JSON", e);
             return null;

@@ -47,7 +47,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 DataContract.ContactsEntry.COLUMN_CONTACT_ADDRESS_LONGITUDE + " DOUBLE" +
                 ");";
 
-       // db.execSQL(CREATE_FAVORITES_TABLE);
+        // db.execSQL(CREATE_FAVORITES_TABLE);
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
 

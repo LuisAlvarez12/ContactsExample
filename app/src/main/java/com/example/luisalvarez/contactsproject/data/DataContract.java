@@ -22,13 +22,13 @@ public class DataContract {
 
     public static final class ContactsEntry implements BaseColumns {
         // Content URI represents the base location for the table
-        public static final String strContent = BASE_CONTENT_URI+ sContactsQ;
+        public static final String strContent = BASE_CONTENT_URI + sContactsQ;
         public static final Uri CONTENT_URI =
                 Uri.parse(strContent);
 
         // These are special type prefixes that specify if a URI returns a list or a specific item
         public static final String CONTENT_TYPE =
-                "vnd.android.cursor.dir/" + CONTENT_URI  + "/" + sContactsQ;
+                "vnd.android.cursor.dir/" + CONTENT_URI + "/" + sContactsQ;
         public static final String CONTENT_ITEM_TYPE =
                 "vnd.android.cursor.item/" + CONTENT_URI + "/" + sContactsQ;
 
@@ -54,17 +54,14 @@ public class DataContract {
         public static final String COLUMN_CONTACT_ADDRESS_LONGITUDE = "longitude";
 
 
-
-
-
-        public static String[] buildListProjectionArray(){
+        public static String[] buildListProjectionArray() {
             String[] projection = new String[3];
             return projection;
         }
 
 
         // Define a function to build a URI to find a specific movie by it's identifier
-        public static Uri buildProfileUri(long id){
+        public static Uri buildProfileUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
     }
@@ -73,13 +70,13 @@ public class DataContract {
 
 
         // Content URI represents the base location for the table
-        public static final String strContent = BASE_CONTENT_URI+ sFavoritesQ;
+        public static final String strContent = BASE_CONTENT_URI + sFavoritesQ;
         public static final Uri CONTENT_URI =
                 Uri.parse(strContent);
 
         // These are special type prefixes that specify if a URI returns a list or a specific item
         public static final String CONTENT_TYPE =
-                "vnd.android.cursor.dir/" + CONTENT_URI  + "/" + sFavoritesQ;
+                "vnd.android.cursor.dir/" + CONTENT_URI + "/" + sFavoritesQ;
         public static final String CONTENT_ITEM_TYPE =
                 "vnd.android.cursor.item/" + CONTENT_URI + "/" + sFavoritesQ;
 
@@ -92,12 +89,10 @@ public class DataContract {
         };
 
         // Define a function to build a URI to find a specific movie by it's identifier
-        public static Uri buildMovieUri(long id){
+        public static Uri buildMovieUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
     }
-
-
 
 
 }

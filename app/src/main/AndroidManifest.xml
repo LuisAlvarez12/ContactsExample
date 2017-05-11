@@ -21,14 +21,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <provider android:name=".data.ContactProvider"
-            android:authorities="com.example.luisalvarez.contactsproject"
-            />
-        <service android:name=".data.FetchService"
-            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE"
-            android:exported="true">
+        <provider
+            android:name=".data.ContactProvider"
+            android:authorities="com.example.luisalvarez.contactsproject" />
+        <service
+            android:name=".data.FetchService"
+            android:exported="true"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
             <intent-filter>
-                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY" />
             </intent-filter>
         </service>
     </application>

@@ -6,13 +6,10 @@
     tools:context="com.example.luisalvarez.contactsproject.activites.Contacts_List">
 
 
-    <fragment
-        android:name="com.example.luisalvarez.contactsproject.fragments.Fragment_Contacts_All"
+    <FrameLayout
         android:id="@+id/fragmentHolder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-
+        android:layout_height="match_parent" />
 
 
 </android.support.design.widget.CoordinatorLayout>

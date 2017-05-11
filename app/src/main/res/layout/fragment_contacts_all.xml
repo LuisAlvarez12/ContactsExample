@@ -1,15 +1,15 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.luisalvarez.contactsproject.fragments.Fragment_Contacts_All">
+    tools:context="com.example.luisalvarez.contactsproject.fragments.FragmentContactsAll">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/view_recyclerview"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager">
 
 
     </android.support.v7.widget.RecyclerView>
