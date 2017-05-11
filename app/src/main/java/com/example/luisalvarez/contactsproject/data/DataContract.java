@@ -54,31 +54,8 @@ public class DataContract {
         public static final String COLUMN_CONTACT_ADDRESS_LONGITUDE = "longitude";
 
 
-        /**
-         * @return full projection of a contact entry
-         */
-        public static String[] buildProjectionArray(){
-            String[] projection = new String[18];
-            projection[0] = COLUMN_CONTACT_NAME;
-            projection[1] = COLUMN_CONTACT_COMPANY;
-            projection[2] = COLUMN_CONTACT_FAVORITE;
-            projection[3] = COLUMN_CONTACT_IMAGE_SMALL;
-            projection[4] = COLUMN_CONTACT_IMAGE_LARGE;
-            projection[5] = COLUMN_CONTACT_EMAIL;
-            projection[6] = COLUMN_CONTACT_WEBSITE;
-            projection[7] = COLUMN_CONTACT_BIRTHDATE;
-            projection[8] = COLUMN_CONTACT_PHONE_WORK;
-            projection[9] = COLUMN_CONTACT_PHONE_HOME;
-            projection[10] = COLUMN_CONTACT_PHONE_MOBILE;
-            projection[11] = COLUMN_CONTACT_ADDRESS_STREET;
-            projection[12] = COLUMN_CONTACT_ADDRESS_CITY;
-            projection[13] = COLUMN_CONTACT_ADDRESS_STATE;
-            projection[14] = COLUMN_CONTACT_ADDRESS_COUNTRY;
-            projection[15] = COLUMN_CONTACT_ADDRESS_ZIP;
-            projection[16] = COLUMN_CONTACT_ADDRESS_LATITUDE;
-            projection[17] = COLUMN_CONTACT_ADDRESS_LONGITUDE;
-            return projection;
-        };
+
+
 
         public static String[] buildListProjectionArray(){
             String[] projection = new String[3];

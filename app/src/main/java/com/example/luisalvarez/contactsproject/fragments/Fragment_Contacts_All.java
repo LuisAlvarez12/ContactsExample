@@ -1,13 +1,13 @@
 package com.example.luisalvarez.contactsproject.fragments;
 
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import com.example.luisalvarez.contactsproject.R;
 import com.example.luisalvarez.contactsproject.data.ContactsFetchTask;
 import com.example.luisalvarez.contactsproject.data.DataContract;
+import com.example.luisalvarez.contactsproject.util.Config;
+import com.example.luisalvarez.contactsproject.util.ContactListAdapter;
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.OneoffTask;
 
@@ -28,6 +30,8 @@ public class Fragment_Contacts_All extends Fragment implements LoaderManager.Loa
     private String mParam1;
     private String mParam2;
 
+    private ContactListAdapter adapter;
+    private GcmNetworkManager mGcmNetworkManager;
 
 
     @BindView(R.id.view_recyclerview)
@@ -63,7 +67,7 @@ public class Fragment_Contacts_All extends Fragment implements LoaderManager.Loa
         //Bind views to fragment
         ButterKnife.bind(this,rootView);
         startFetchTaskService();
-
+        adapter = new ContactListAdapter(getActivity(),null);
         return rootView;
     }
 
@@ -73,7 +77,7 @@ public class Fragment_Contacts_All extends Fragment implements LoaderManager.Loa
                 .setExecutionWindow(30,60)
                 .setTag("contacts_service")
                 .build();
-        GcmNetworkManager.getInstance(getActivity()).schedule(myTask);
+        mGcmNetworkManager.getInstance(getActivity()).schedule(myTask);
     }
 
 
@@ -84,7 +88,7 @@ public class Fragment_Contacts_All extends Fragment implements LoaderManager.Loa
     public Loader onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getActivity(),
                 DataContract.ContactsEntry.CONTENT_URI,
-                DataContract.ContactsEntry.buildProjectionArray(),
+                Config.buildProjectionListArray(),
                 null,
                 null,
                 DataContract.ContactsEntry.COLUMN_CONTACT_NAME);
@@ -92,11 +96,11 @@ public class Fragment_Contacts_All extends Fragment implements LoaderManager.Loa
 
     @Override
     public void onLoadFinished(Loader loader, Object data) {
-
+        adapter.setCursor((Cursor)data);
     }
 
     @Override
     public void onLoaderReset(Loader loader) {
-
+        adapter.setCursor(null);
     }
 }
