@@ -5,10 +5,10 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/item_contact_image"
-        android:layout_width="110dp"
+        android:layout_width="@dimen/size_circle_image"
         android:layout_height="match_parent"
         android:layout_gravity="left"
-        android:padding="10dp"
+        android:padding="@dimen/padding_small"
         android:transitionName="@string/transition_image" />
 
 
@@ -16,68 +16,69 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="90dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginBottom="@dimen/padding_small"
+        android:layout_marginLeft="@dimen/margin_for_circleview"
+        android:layout_marginRight="@dimen/padding_med"
+        android:layout_marginTop="@dimen/padding_small">
 
         <TextView
-            android:id="@+id/item_contact_name"
+            android:id="@+id/item_primary_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:textColor="@color/primary_text_dark"
-            android:textSize="25sp" />
+            android:textSize="@dimen/textsize_med" />
 
         <TextView
             android:id="@+id/item_contact_phone"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/size_var_50"
             android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/size_var_50"
             android:layout_gravity="bottom"
             android:gravity="center"
             android:orientation="horizontal">
 
 
             <ImageView
-                android:layout_width="50dp"
+                android:id="@+id/item_icon_home"
+                android:layout_width="@dimen/size_var_50"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
                 android:scaleType="fitCenter"
-                android:src="@drawable/icon_phone_home"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"/>
+                android:src="@drawable/icon_phone_home" />
 
             <ImageView
-                android:layout_width="50dp"
+                android:id="@+id/item_icon_mobile"
+                android:layout_width="@dimen/size_var_50"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
                 android:scaleType="fitXY"
-                android:src="@drawable/icon_phone_mobile"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"/>
+                android:src="@drawable/icon_phone_mobile" />
 
             <ImageView
-                android:layout_width="50dp"
+                android:id="@+id/item_icon_work"
+                android:layout_width="@dimen/size_var_50"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/icon_phone_work"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"/>
+                android:layout_marginRight="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_phone_work" />
 
 
         </LinearLayout>
 
         <View
-            android:layout_width="12dp"
+            android:layout_width="@dimen/padding_small"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:background="@color/recAccent"
-            />
+            android:background="@color/recAccent" />
     </android.support.v7.widget.CardView>
-
 
 
 </FrameLayout>

@@ -3,7 +3,6 @@ package com.example.luisalvarez.contactsproject.adapter;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,49 +32,81 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactViewHolder> 
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(mLayout, parent, false);
-        return new ContactViewHolder(v);
+        return new ContactViewHolder(v, 0);
     }
 
     @Override
     public void onBindViewHolder(final ContactViewHolder holder, final int position) {
-        mItems.moveToPosition(position);
-        switch (mLayout) {
-            case R.layout.item_list_med_contact:
-            holder.contactName.setText(mItems.getString(Config.POSITION_PROJECTION_CONTACT_NAME));
-            holder.contactPhone.setText(mItems.getString(Config.POSITION_PROJECTION_CONTACT_PHONE));
-            Picasso.with(mContext)
-                    .load(mItems.getString(Config.POSITION_PROJECTION_CONTACT_IMAGE_SMALL))
-                    .into(holder.contactPhoto);
-
-            holder.contactPhoto.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("tran", "contact clicked");
-                    mOnClickListener.onContactClicked(holder, position);
-                    Log.d("tran", "click accpeted");
-
-                }
-            });
-                break;
-            case R.layout.item_grid_contact:
-
-                break;
-            case R.layout.item_list_small_contact:
-                holder.contactName.setText(mItems.getString(Config.POSITION_PROJECTION_CONTACT_NAME));
-                Picasso.with(mContext)
-                        .load(mItems.getString(Config.POSITION_PROJECTION_CONTACT_IMAGE_SMALL))
-                        .into(holder.contactPhoto);
-
-                holder.contactPhoto.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.d("tran", "contact clicked");
-                        mOnClickListener.onContactClicked(holder, position);
-                        Log.d("tran", "click accpeted");
-
+        if (mItems != null) {
+            mItems.moveToPosition(position);
+            switch (mLayout) {
+                case R.layout.item_list_med_contact:
+                    final String numMobile = mItems.getString(Config.POSITION_PROJECTION_CONTACT_MOBILE);
+                    final String numHome = mItems.getString(Config.POSITION_PROJECTION_HOME);
+                    final String numWork = mItems.getString(Config.POSITION_PROJECTION_WORK);
+                    if (numMobile.equals("")) {
+                        holder.iconMobile.setVisibility(View.GONE);
                     }
-                });
-                break;
+                    if (numHome.equals("")) {
+                        holder.iconHome.setVisibility(View.GONE);
+                    }
+                    if (numWork.equals("")) {
+                        holder.iconWork.setVisibility(View.GONE);
+                    }
+
+                    holder.contactName.setText(mItems.getString(Config.POSITION_PROJECTION_CONTACT_NAME));
+                    Picasso.with(mContext)
+                            .load(mItems.getString(Config.POSITION_PROJECTION_CONTACT_IMAGE_SMALL))
+                            .into(holder.contactPhoto);
+
+
+                    holder.iconHome.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (!numHome.equals("")) {
+                                mOnClickListener.ondialClick(numHome);
+                            }
+                        }
+                    });
+                    holder.iconWork.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (!numWork.equals("")) {
+                                mOnClickListener.ondialClick(numWork);
+                            }
+                        }
+                    });
+
+                    holder.iconMobile.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (!numMobile.equals("")) {
+                                mOnClickListener.ondialClick(numMobile);
+                            }
+                        }
+                    });
+
+                    holder.contactPhoto.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mOnClickListener.onContactClicked(holder, position);
+                        }
+                    });
+                    break;
+                case R.layout.item_list_small_contact:
+                    holder.contactName.setText(mItems.getString(Config.POSITION_PROJECTION_CONTACT_NAME));
+                    Picasso.with(mContext)
+                            .load(mItems.getString(Config.POSITION_PROJECTION_CONTACT_IMAGE_SMALL))
+                            .into(holder.contactPhoto);
+
+                    holder.contactPhoto.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mOnClickListener.onContactClicked(holder, position);
+                        }
+                    });
+                    break;
+            }
         }
     }
 
@@ -88,7 +119,6 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactViewHolder> 
         this.mLayout = layout;
         notifyDataSetChanged();
     }
-
 
 
     @Override

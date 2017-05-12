@@ -4,7 +4,6 @@
     <item
         android:id="@+id/menu_small"
         android:icon="@drawable/recycler_small"
-        app:showAsAction="ifRoom"
-        android:title="Small List">
-    </item>
+        android:title="Small List"
+        app:showAsAction="ifRoom" />
 </menu>

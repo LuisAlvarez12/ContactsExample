@@ -35,7 +35,7 @@ public class ContactsTask {
             return;
         }
 
-        ArrayList<ContentProviderOperation> cpo = new ArrayList<ContentProviderOperation>();
+        ArrayList<ContentProviderOperation> cpo = new ArrayList<>();
         Uri dirUri = DataContract.ContactsEntry.CONTENT_URI;
         //delete all entries
         cpo.add(ContentProviderOperation.newDelete(dirUri).build());

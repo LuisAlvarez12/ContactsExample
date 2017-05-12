@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="textsize_med">25sp</dimen>
+    <dimen name="textsize_med_2">20sp</dimen>
+
+    <dimen name="margin_small">5dp</dimen>
+    <dimen name="margin_for_circleview">90dp</dimen>
+
+
+    <dimen name="padding_small">10dp</dimen>
+    <dimen name="padding_med">30dp</dimen>
+
+    <dimen name="size_frame_w_image">300dp</dimen>
+    <dimen name="size_circle_image">110dp</dimen>
+    <dimen name="size_var_50">50dp</dimen>
+
+
+
+</resources>

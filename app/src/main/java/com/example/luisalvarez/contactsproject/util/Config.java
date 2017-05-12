@@ -30,10 +30,12 @@ public class Config {
     public static final int POSITION_LIST_CONTACT_ADDRESS_LONGITUDE = 17;
 
     public static final int POSITION_PROJECTION_CONTACT_NAME = 0;
-    public static final int POSITION_PROJECTION_CONTACT_PHONE = 1;
+    public static final int POSITION_PROJECTION_CONTACT_MOBILE = 1;
     public static final int POSITION_PROJECTION_CONTACT_IMAGE_SMALL = 2;
     public static final int POSITION_PROJECTION_CONTACT_IMAGE_LARGE = 3;
     public static final int POSITION_PROJECTION_CONTACT_ID = 4;
+    public static final int POSITION_PROJECTION_WORK = 5;
+    public static final int POSITION_PROJECTION_HOME = 6;
 
 
     private static String TAG = Config.class.toString();
@@ -80,12 +82,14 @@ public class Config {
 
 
     public static String[] buildProjectionListArray() {
-        String[] projection = new String[5];
+        String[] projection = new String[7];
         projection[0] = DataContract.ContactsEntry.COLUMN_CONTACT_NAME;
         projection[1] = DataContract.ContactsEntry.COLUMN_CONTACT_PHONE_MOBILE;
         projection[2] = DataContract.ContactsEntry.COLUMN_CONTACT_IMAGE_SMALL;
         projection[3] = DataContract.ContactsEntry.COLUMN_CONTACT_IMAGE_LARGE;
         projection[4] = DataContract.ContactsEntry._ID;
+        projection[5] = DataContract.ContactsEntry.COLUMN_CONTACT_PHONE_WORK;
+        projection[6] = DataContract.ContactsEntry.COLUMN_CONTACT_PHONE_HOME;
         return projection;
     }
 

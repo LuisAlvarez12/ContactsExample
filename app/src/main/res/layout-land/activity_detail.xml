@@ -1,0 +1,96 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elevation="4dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id='@+id/item_contact_image'
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_frame_w_image"
+                android:scaleType="centerCrop"
+                android:transitionName="@string/transition_image"
+                tools:ignore="ContentDescription,UnusedAttribute" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_frame_w_image"
+                android:background="@color/black_cardview_transparent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|left"
+                android:layout_marginBottom="@dimen/padding_med"
+                android:layout_marginLeft="@dimen/padding_med"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_contact_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Luis Alvarez"
+                    android:textColor="@color/primary_text_light"
+                    android:textSize="@dimen/textsize_med" />
+
+
+            </LinearLayout>
+        </FrameLayout>
+
+        <com.nirhart.parallaxscroll.views.ParallaxScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:parallax_factor="1.9"
+            tools:context=".MainActivity">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_contact_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="?actionBarSize" />
+
+
+            </LinearLayout>
+        </com.nirhart.parallaxscroll.views.ParallaxScrollView>
+
+    </LinearLayout>
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_call_white_24dp" />
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

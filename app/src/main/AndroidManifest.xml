@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.luisalvarez.contactsproject">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
@@ -35,7 +36,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".activites.DetailActivity"></activity>
+        <activity android:name=".activites.DetailActivity" />
     </application>
 
 </manifest>

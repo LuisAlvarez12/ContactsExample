@@ -6,4 +6,9 @@ package com.example.luisalvarez.contactsproject.adapter;
  */
 public interface ListOnClickListener {
     void onContactClicked(ContactViewHolder holder, int position);
+
+    void ondialClick(String num);
+
+    void onWebsiteClick(String site);
+
 }
