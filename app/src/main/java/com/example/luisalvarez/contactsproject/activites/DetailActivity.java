@@ -14,7 +14,9 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,8 @@ public class DetailActivity extends AppCompatActivity implements ListOnClickList
     RecyclerView recycler_details;
     @BindView(R.id.tv_contact_name)
     TextView contactName;
+    @BindView(R.id.detail_call)
+    LinearLayout call_button;
     private Cursor mContactData;
     private DetailsListAdapter adapter;
     private String index;
@@ -50,7 +54,6 @@ public class DetailActivity extends AppCompatActivity implements ListOnClickList
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             SharedElementTransisition(imageView);
         }
-
         index = getIntent().getStringExtra(Contacts_List.TAG_POSITION);
         contactName.setText(index);
         adapter = new DetailsListAdapter(this, null, this);
@@ -80,12 +83,11 @@ public class DetailActivity extends AppCompatActivity implements ListOnClickList
                 });
     }
 
-    @Override
-    public void onContactClicked(ContactViewHolder holder, int position) {
 
-    }
-
-
+    /**
+     *request a number to dial using the call action
+     *
+     */
     @Override
     public void ondialClick(String num) {
         Intent callIntent = new Intent(Intent.ACTION_CALL);
@@ -94,18 +96,14 @@ public class DetailActivity extends AppCompatActivity implements ListOnClickList
                 new String[]{Manifest.permission.CALL_PHONE},
                 1);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         startActivity(callIntent);
     }
 
+    /**
+     *accepts a website to access
+     */
     @Override
     public void onWebsiteClick(String site) {
         Intent i = new Intent(Intent.ACTION_VIEW);
@@ -113,6 +111,9 @@ public class DetailActivity extends AppCompatActivity implements ListOnClickList
         startActivity(i);
     }
 
+    /**
+     *permission results for using "dangerous" intent
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -128,6 +129,9 @@ public class DetailActivity extends AppCompatActivity implements ListOnClickList
         }
     }
 
+    /**
+     *loader access
+     */
     @Override
     public Loader onCreateLoader(int id, Bundle args) {
         return new CursorLoader(this,
@@ -141,10 +145,20 @@ public class DetailActivity extends AppCompatActivity implements ListOnClickList
     @Override
     public void onLoadFinished(Loader loader, Object data) {
         mContactData = (Cursor) data;
-        if (mContactData.getCount() == 0 || mContactData == null) {
-
+        if (mContactData.getCount() == 1 || mContactData != null) {
+            call_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   ondialClick(mContactData.getString(Config.POSITION_LIST_CONTACT_PHONE_MOBILE));
+                }
+            });
         }
         adapter.setCursor(mContactData);
+
+    }
+
+    @Override
+    public void onContactClicked(ContactViewHolder holder, int position) {
 
     }
 
