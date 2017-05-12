@@ -21,43 +21,75 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactViewHolder> 
     private Cursor mItems;
     private Context mContext;
     private ListOnClickListener mOnClickListener;
+    private int mLayout;
 
-    public ContactListAdapter(Context activity, Cursor items, ListOnClickListener listOnClickListener) {
+    public ContactListAdapter(Context activity, Cursor items, ListOnClickListener listOnClickListener, int layout) {
         this.mItems = items;
         this.mContext = activity;
         this.mOnClickListener = listOnClickListener;
+        this.mLayout = layout;
     }
 
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_contact, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(mLayout, parent, false);
         return new ContactViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(final ContactViewHolder holder, final int position) {
         mItems.moveToPosition(position);
-        holder.contactName.setText(mItems.getString(Config.POSITION_PROJECTION_CONTACT_NAME));
-        holder.contactPhone.setText(mItems.getString(Config.POSITION_PROJECTION_CONTACT_PHONE));
-        Picasso.with(mContext)
-                .load(mItems.getString(Config.POSITION_PROJECTION_CONTACT_IMAGE_SMALL))
-                .into(holder.contactPhoto);
+        switch (mLayout) {
+            case R.layout.item_list_med_contact:
+            holder.contactName.setText(mItems.getString(Config.POSITION_PROJECTION_CONTACT_NAME));
+            holder.contactPhone.setText(mItems.getString(Config.POSITION_PROJECTION_CONTACT_PHONE));
+            Picasso.with(mContext)
+                    .load(mItems.getString(Config.POSITION_PROJECTION_CONTACT_IMAGE_SMALL))
+                    .into(holder.contactPhoto);
 
-        holder.contactPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("tran","contact clicked");
-                mOnClickListener.onContactClicked(holder,position);
-                Log.d("tran","click accpeted");
+            holder.contactPhoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("tran", "contact clicked");
+                    mOnClickListener.onContactClicked(holder, position);
+                    Log.d("tran", "click accpeted");
 
-            }
-        });
+                }
+            });
+                break;
+            case R.layout.item_grid_contact:
+
+                break;
+            case R.layout.item_list_small_contact:
+                holder.contactName.setText(mItems.getString(Config.POSITION_PROJECTION_CONTACT_NAME));
+                Picasso.with(mContext)
+                        .load(mItems.getString(Config.POSITION_PROJECTION_CONTACT_IMAGE_SMALL))
+                        .into(holder.contactPhoto);
+
+                holder.contactPhoto.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("tran", "contact clicked");
+                        mOnClickListener.onContactClicked(holder, position);
+                        Log.d("tran", "click accpeted");
+
+                    }
+                });
+                break;
+        }
     }
 
     public void setCursor(Cursor cursor) {
         this.mItems = cursor;
         notifyDataSetChanged();
     }
+
+    public void setmLayout(int layout) {
+        this.mLayout = layout;
+        notifyDataSetChanged();
+    }
+
+
 
     @Override
     public int getItemCount() {
@@ -73,4 +105,4 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactViewHolder> 
     }
 
 
-    }
+}

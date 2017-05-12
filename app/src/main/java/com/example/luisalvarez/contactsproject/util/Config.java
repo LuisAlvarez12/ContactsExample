@@ -36,7 +36,6 @@ public class Config {
     public static final int POSITION_PROJECTION_CONTACT_ID = 4;
 
 
-
     private static String TAG = Config.class.toString();
 
     //get url to be parsed to json, called in RemoteEndpointUtil

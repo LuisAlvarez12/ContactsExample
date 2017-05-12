@@ -14,14 +14,12 @@ import butterknife.ButterKnife;
  * Created by luisalvarez on 5/11/17.
  */
 
-public class ContactViewHolder extends RecyclerView.ViewHolder  {
+public class ContactViewHolder extends RecyclerView.ViewHolder {
+    public ImageView contactPhoto;
     @BindView(R.id.item_contact_name)
     TextView contactName;
-
     @BindView(R.id.item_contact_phone)
     TextView contactPhone;
-
-    public ImageView contactPhoto;
 
     public ContactViewHolder(View itemView) {
         super(itemView);

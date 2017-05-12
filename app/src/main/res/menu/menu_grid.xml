@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_grid"
+        android:icon="@drawable/recycler_grid"
+        app:showAsAction="ifRoom"
+        android:title="grid">
+    </item>
+    <item
+        android:id="@+id/menu_med"
+        android:icon="@drawable/recycler_large"
+        app:showAsAction="ifRoom"
+        android:title="Medium List">
+    </item>
+    <item
+        android:id="@+id/menu_small"
+        android:icon="@drawable/recycler_small"
+        app:showAsAction="ifRoom"
+        android:title="Small List">
+    </item>
+</menu>
