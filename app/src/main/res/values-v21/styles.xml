@@ -7,8 +7,8 @@
     </style>
 
     <style name="AppTheme.NoActionBar.DefaultActivity">
-        <item name="android:windowEnterTransition">@transition/simple</item>
-        <item name="android:windowExitTransition">@transition/simple</item>
+        <!--<item name="android:windowEnterTransition">@transition/simple</item>-->
+        <!--<item name="android:windowExitTransition">@transition/simple</item>-->
     </style>
 
 </resources>

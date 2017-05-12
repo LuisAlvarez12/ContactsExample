@@ -25,15 +25,13 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Shared Element Transisition for jelly bean and greater
+     */
     private void SharedElementTransisition(ImageView imageView) {
         supportPostponeEnterTransition();
         String url = getIntent().getStringExtra(Contacts_List.TAG_URL);
-
-        Picasso.with(this)
-                .load(url)
-                .fit()
-                .noFade()
-                .centerCrop()
+        Picasso.with(this).load(url).fit().noFade().centerCrop()
                 .into(imageView, new Callback() {
                     @Override
                     public void onSuccess() {

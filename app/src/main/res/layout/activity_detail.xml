@@ -2,27 +2,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.luisalvarez.contactsproject.fragments.FragmentDetails">
+    >
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <FrameLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:text="niceeeeeee"/>
         <ImageView
             android:id='@+id/item_contact_image'
-            android:background="@color/colorAccent"
-            android:layout_width="240dp"
-            android:layout_height="240dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
             android:scaleType="centerCrop"
             android:transitionName="@string/transition_image"
             tools:ignore="ContentDescription,UnusedAttribute" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/black_cardview_transparent"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="bottom|left"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="30dp">
+
+            <TextView
+                android:textColor="@color/primary_text_light"
+                android:textSize="25sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Luis Alvarez"/>
+
+            <TextView
+                android:textColor="@color/primary_text_light"
+                android:textSize="25sp"
+                android:layout_marginTop="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(773) 230-4987"/>
+
+            <TextView
+                android:textColor="@color/primary_text_light"
+                android:textSize="25sp"
+                android:layout_marginTop="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Solstice"/>
+
+        </LinearLayout>
+    </FrameLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:gravity="center_horizontal"
+        android:background="#334048">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_call_white_24dp">
+        </ImageView>
     </LinearLayout>
 
 

@@ -3,4 +3,16 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="white_1">#E0E0E0</color>
+    <color name="white_2">#F5F5F5</color>
+    <color name="white_3">#FAFAFA</color>
+    <color name="white_4">#FFFFFF</color>
+
+    <color name="primary_text_dark">#de000000</color>
+    <color name="secondary_text_dark">#8a000000</color>
+    <color name="primary_text_light">#ffffffff</color>
+    <color name="secondary_text_light">#b3ffffff</color>
+
+    <color name="black_cardview_transparent">#80000000</color>
 </resources>

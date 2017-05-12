@@ -51,6 +51,10 @@ public class Contacts_List extends AppCompatActivity implements ListOnClickListe
         getSupportLoaderManager().initLoader(0, null, this);
     }
 
+    /**
+     * Start service to update the contacts list via
+     * the URL every 6 hours
+     */
     private void startFetchTaskService() {
         PeriodicTask myTask = new PeriodicTask.Builder()
                 .setService(FetchService.class)
@@ -60,12 +64,15 @@ public class Contacts_List extends AppCompatActivity implements ListOnClickListe
         GcmNetworkManager.getInstance(this).schedule(myTask);
     }
 
+    /**
+     * Intent to detailActivity
+     */
     @Override
     public void onContactClicked(ContactViewHolder holder, int position) {
         items.moveToPosition(position);
         Intent intent = new Intent(Contacts_List.this, DetailActivity.class);
-        intent.putExtra(TAG_URL,items.getString(Config.POSITION_PROJECTION_CONTACT_IMAGE_SMALL));
-        intent.putExtra(TAG_POSITION,position);
+        intent.putExtra(TAG_URL,items.getString(Config.POSITION_PROJECTION_CONTACT_IMAGE_LARGE));
+        intent.putExtra(TAG_POSITION,items.getInt(Config.POSITION_PROJECTION_CONTACT_ID));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             ActivityOptionsCompat options = ActivityOptionsCompat.
